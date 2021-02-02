@@ -14,14 +14,19 @@ Use user root, or a user with sudo privileges
 ### Download plugin
 
 mkdir cbc-cockpit-plugin; cd cbc-cockpit-plugin
+
 curl -O https://raw.githubusercontent.com/slist/cbc-cockpit-plugin/main/manifest.json
+
 curl -O https://raw.githubusercontent.com/slist/cbc-cockpit-plugin/main/cbc.html
+
 curl -O https://raw.githubusercontent.com/slist/cbc-cockpit-plugin/main/cbc.js
+
 curl -O https://raw.githubusercontent.com/slist/cbc-cockpit-plugin/main/cbc.png
 
 ### Integrate plugin to Cockpit for current user
 
 mkdir -p ~/.local/share/cockpit
+
 ln -snf $PWD ~/.local/share/cockpit/cbc-cockpit-plugin
 
 ### Check integration
