@@ -1,0 +1,10 @@
+{
+    "version": 0,
+
+    "tools": {
+        "VMware Carbon Black Cloud": {
+            "label": "VMware Carbon Black Cloud",
+            "path": "cbc.html"
+        }
+    }
+}

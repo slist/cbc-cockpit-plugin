@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>VMware Carbon Black Cloud</title>
+		<meta charset="utf-8">
+		<link href="../base1/cockpit.css" type="text/css" rel="stylesheet">
+		<script src="../base1/cockpit.js"></script>
+	</head>
+	<body>
+		<div class="pf-c-page">
+			<main class="pf-c-page__main" tabindex="-1">
+				<img src="./cbc.png">
+				<section class="pf-c-page__main-section pf-m-light">
+					<table class="form-table-ct">
+						<tr>
+							<td><label class="control label" id="Service">Service <a href="/system/services#/cbagentd.service" target="_blank">cbagentd</a></label></td>
+						</tr>
+						<tr>
+							<td><button class="pf-c-button pf-m-primary" id="sensor_version">Sensor version</button></td>
+							<td><span id="result_sensor_version"></span></td>
+						</tr>
+						<tr>
+							<td><button class="pf-c-button pf-m-primary" id="kernel_version">Linux Kernel version</button></td>
+							<td><span id="result_kernel_version"></span></td>
+						</tr>
+						<tr>
+							<td><button class="pf-c-button pf-m-primary" id="uninstall">Uninstall sensor (TODO)</button></td>
+							<td><span id="result_uninstall"></span></td>
+						</tr>
+						<tr>
+							<td><button class="pf-c-button pf-m-primary" id="header">Check kernel header (minimum required : 4.4)</button></td>
+							<td><span id="result_header"></span></td>
+						</tr>
+						<tr>
+							<td><button class="pf-c-button pf-m-primary" id="cfg">cfg.ini</button></td>
+						</tr>
+						<tr>
+							<td><button class="pf-c-button pf-m-primary" id="events_average">events-average</button></td>
+						</tr>
+						<tr>
+							<td><button class="pf-c-button pf-m-primary" id="events_detail">events-detail</button></td>
+						</tr>
+						<tr>
+							<td>
+								<button class="pf-c-button pf-m-primary" id="bpf_event_collector">bpf_event_collector.log</button>
+<!--								<button class="pf-c-button pf-m-primary" id="bpf_event_collector_E">Errors</button>
+								<button class="pf-c-button pf-m-primary" id="bpf_event_collector_EW">Errors + Warning</button>
+-->
+							</td>
+						</tr>
+					</table>
+					<pre id="output"></pre>
+				</section>
+			</main>
+		</div>
+
+		<script src="cbc.js"></script>
+	</body>
+</html>
+
