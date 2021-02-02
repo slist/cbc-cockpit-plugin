@@ -75,8 +75,42 @@ function kernel_version_fail() {
 //
 // Check Kernel header presence
 // TODO : Check minimum version (4.4+)
+// TODO : Check for Suse
 
 function header_run() {
+
+	cockpit.file("/usr/bin/yum", {binary: true}).read()
+		.then((content, tag) => {
+			if ((content !== null) || (tag !== "-")) {
+				header_yum_run();
+			}
+		});
+
+	cockpit.file("/usr/bin/apt", {binary: true}).read()
+		.then((content, tag) => {
+			if ((content !== null) || (tag !== "-")) {
+				header_apt_run();
+			}
+		});
+	cockpit.file("/usr/bin/zypper", {binary: true}).read()
+		.then((content, tag) => {
+			if ((content !== null) || (tag !== "-")) {
+				header_zypper_run();
+			}
+		});
+}
+
+function header_apt_run() {
+	cockpit.script(["apt list linux-headers-$(uname -r)"])
+		.stream(cmd_output)
+		.then(header_success)
+		.catch(header_fail);
+
+	result_header.innerHTML = "";
+	output.innerHTML = "<b>apt list linux-headers-$(uname -r)</b><hr>";
+}
+
+function header_yum_run() {
 	cockpit.script(["yum list kernel-devel-$(uname -r)"])
 		.stream(cmd_output)
 		.then(header_success)
@@ -84,6 +118,10 @@ function header_run() {
 
 	result_header.innerHTML = "";
 	output.innerHTML = "<b>yum list kernel-devel-$(uname -r)</b><hr>";
+}
+
+function header_zypper_run() {
+	// TODO
 }
 
 function header_success() {
