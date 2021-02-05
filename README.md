@@ -13,27 +13,22 @@ Cockpit project is an open source project from RedHat, that is available on almo
 * Use user root, or a user with sudo privileges to run cbc-cockpit-plugin
 
 ### Download plugin
-
+```
 mkdir cbc-cockpit-plugin; cd cbc-cockpit-plugin
-
 curl -O https://raw.githubusercontent.com/slist/cbc-cockpit-plugin/main/manifest.json
-
 curl -O https://raw.githubusercontent.com/slist/cbc-cockpit-plugin/main/cbc.html
-
 curl -O https://raw.githubusercontent.com/slist/cbc-cockpit-plugin/main/cbc.js
-
 curl -O https://raw.githubusercontent.com/slist/cbc-cockpit-plugin/main/cbc.png
-
+```
 ### Integrate plugin to Cockpit for current user
-
+```
 mkdir -p ~/.local/share/cockpit
-
 ln -snf $PWD ~/.local/share/cockpit/cbc-cockpit-plugin
-
+```
 ### Check integration
-
+```
 cockpit-bridge --packages
-
+```
 ### Login on Cockpit https://127.0.0.1:9090
 
 Use the login used to download the plugin, enjoy cbc plugin!
