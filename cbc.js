@@ -12,6 +12,7 @@ const header = document.getElementById("header");
 const result_header = document.getElementById("result_header");
 
 const cfg = document.getElementById("cfg");
+const live_query_log = document.getElementById("live_query_log");
 const events_average = document.getElementById("events_average");
 const events_detail = document.getElementById("events_detail");
 const bpf_event_collector = document.getElementById("bpf_event_collector");
@@ -145,6 +146,14 @@ function cfg_run() {
 	output.innerHTML = "<b>cat /var/opt/carbonblack/psc/cfg.ini</b><hr>";
 }
 
+function live_query_log_run() {
+	cockpit.spawn(["cat", "/var/opt/carbonblack/psc/log/blades/40E797FD-4322-4D33-8E8C-EF697F4C2323/live_query_log.txt"],
+                { err: "out", superuser: "try" })
+                .stream(cmd_output);
+
+        output.innerHTML = "<b>cat /var/opt/carbonblack/psc/log/blades/40E797FD-4322-4D33-8E8C-EF697F4C2323/live_query_log.txt</b><hr>";
+}
+
 function events_average_run() {
 	cockpit.spawn(["cat", "/var/opt/carbonblack/psc/log/blades/E51C4A7E-2D41-4F57-99BC-6AA907CA3B40/events-average"],
                 { err: "out", superuser: "try" })
@@ -184,6 +193,7 @@ kernel_version.addEventListener("click", kernel_version_run);
 header.addEventListener("click", header_run);
 
 cfg.addEventListener("click", cfg_run);
+live_query_log.addEventListener("click", live_query_log_run);
 events_average.addEventListener("click", events_average_run);
 events_detail.addEventListener("click", events_detail_run);
 bpf_event_collector.addEventListener("click", bpf_event_collector_run);
