@@ -15,6 +15,7 @@ const cfg = document.getElementById("cfg");
 const diag = document.getElementById("diag");
 const repcli = document.getElementById("repcli");
 
+const syslog = document.getElementById("syslog");
 const scan_log = document.getElementById("scan_log");
 
 const live_query_log = document.getElementById("live_query_log");
@@ -167,6 +168,14 @@ function repcli_run() {
 	output.innerHTML = "<b>/opt/carbonblack/psc/bin/repcli status</b><hr>";
 }
 
+function syslog_run() {
+	cockpit.spawn(["grep", "cb-psc-sensor", "/var/log/syslog"],
+		{ err: "out", superuser: "try" })
+		.stream(cmd_output);
+
+	output.innerHTML = "<b>grep cb-psc-sensor /var/log/syslog</b><hr>";
+}
+
 function scan_log_run() {
 	cockpit.spawn(["grep", "-ri", "scan", "/var/opt/carbonblack/psc/log/log.txt"],
 		{ err: "out", superuser: "try" })
@@ -174,8 +183,6 @@ function scan_log_run() {
 
 	output.innerHTML = "<b>grep -ri scan /var/opt/carbonblack/psc/log/log.txt</b><hr>";
 }
-
-
 
 function live_query_log_run() {
 	cockpit.spawn(["cat", "/var/opt/carbonblack/psc/log/blades/40E797FD-4322-4D33-8E8C-EF697F4C2323/live_query_log.txt"],
@@ -226,6 +233,7 @@ header.addEventListener("click", header_run);
 cfg.addEventListener("click", cfg_run);
 diag.addEventListener("click", diag_run);
 repcli.addEventListener("click", repcli_run);
+syslog.addEventListener("click", syslog_run);
 scan_log.addEventListener("click", scan_log_run);
 live_query_log.addEventListener("click", live_query_log_run);
 events_average.addEventListener("click", events_average_run);
