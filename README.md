@@ -39,4 +39,5 @@ Use the login used to download the plugin, enjoy cbc plugin!
 rm -rf ~/.local/share/cockpit/cbc-cockpit-plugin
 rm -rf ~/cbc-cockpit-plugin
 ```
-
+### Screenshot
+![screenshot](./screenshot.png)
