@@ -13,6 +13,10 @@ const result_header = document.getElementById("result_header");
 
 const cfg = document.getElementById("cfg");
 const diag = document.getElementById("diag");
+const repcli = document.getElementById("repcli");
+
+const scan_log = document.getElementById("scan_log");
+
 const live_query_log = document.getElementById("live_query_log");
 const events_average = document.getElementById("events_average");
 const events_detail = document.getElementById("events_detail");
@@ -155,6 +159,23 @@ function diag_run() {
 	output.innerHTML = "<b>/opt/carbonblack/psc/bin/collectdiags.sh</b><hr>";
 }
 
+function repcli_run() {
+	cockpit.spawn(["/opt/carbonblack/psc/bin/repcli", "status"],
+		{ err: "out", superuser: "try" })
+		.stream(cmd_output);
+
+	output.innerHTML = "<b>/opt/carbonblack/psc/bin/repcli status</b><hr>";
+}
+
+function scan_log_run() {
+	cockpit.spawn(["grep", "-ri", "scan", "/var/opt/carbonblack/psc/log/log.txt"],
+		{ err: "out", superuser: "try" })
+		.stream(cmd_output);
+
+	output.innerHTML = "<b>grep -ri scan /var/opt/carbonblack/psc/log/log.txt</b><hr>";
+}
+
+
 
 function live_query_log_run() {
 	cockpit.spawn(["cat", "/var/opt/carbonblack/psc/log/blades/40E797FD-4322-4D33-8E8C-EF697F4C2323/live_query_log.txt"],
@@ -204,6 +225,8 @@ header.addEventListener("click", header_run);
 
 cfg.addEventListener("click", cfg_run);
 diag.addEventListener("click", diag_run);
+repcli.addEventListener("click", repcli_run);
+scan_log.addEventListener("click", scan_log_run);
 live_query_log.addEventListener("click", live_query_log_run);
 events_average.addEventListener("click", events_average_run);
 events_detail.addEventListener("click", events_detail_run);
